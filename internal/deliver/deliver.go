@@ -18,16 +18,12 @@ func Run() {
 	}
 
 	//make data struct
-	data := usecase.MakeData(input)
+	usecase.MakeData(input)
 
 	//Find correct path
-	result, err := usecase.FindPath(data)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	usecase.FindPath()
 
-	fmt.Println(result)
+	PrintAllConditions(input)
 }
 
 func GetArg() (entity.Input, error) {
@@ -61,4 +57,11 @@ func GetArg() (entity.Input, error) {
 	}
 
 	return out, nil
+}
+
+func PrintAllConditions(i entity.Input) {
+	fmt.Printf("there's %v conditions on %v*%v board :\n", len(entity.AllConditions), i.Len, i.Len)
+	for i, condition := range entity.AllConditions {
+		fmt.Printf("condition %v is : %v\n\n", i+1, condition)
+	}
 }

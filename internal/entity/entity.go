@@ -1,5 +1,9 @@
 package entity
 
+var DataChan = make(chan Data)
+
+var AllConditions [][]string
+
 type Position struct {
 	Row    int
 	Column int
@@ -13,6 +17,6 @@ type Input struct {
 type Data struct {
 	Length   int
 	Moves    []string
-	Board    map[Position]bool
 	Position Position
+	Used     []Position
 }
